@@ -15,6 +15,7 @@ export default function Main(props) {
       setUserDescription(res.about)
       setUserAvatar(res.avatar)
     })
+    .catch(error => console.log(error))
   }, [])
 
   useEffect(() => {
@@ -22,6 +23,7 @@ export default function Main(props) {
       console.log(res)
       setCards(res)
     })
+    .catch(error => console.log(error))
   }, [])
 
 
