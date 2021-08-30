@@ -1,0 +1,12 @@
+.card__image {
+  display: block;
+  width: 100%;
+  /* можно ли устанавливать жесткую высоту? иначе карточки разной высоты */
+  height: 282px;
+  border-radius: 10px 10px 0 0;
+  object-fit: cover;
+}
+
+.card__image:hover {
+  cursor: pointer;
+}

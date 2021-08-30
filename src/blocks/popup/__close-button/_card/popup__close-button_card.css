@@ -1,0 +1,13 @@
+.popup__close-button_card {
+  top: 0;
+  right: 0;
+}
+
+@media screen and (min-width: 320px) and (max-width: 500px) {
+  .popup__close-button_card {
+    background-image: url(../../../../images/button-close-small.svg);
+    width: 26px;
+    height: 26px;
+    right: 30px;
+  }
+}

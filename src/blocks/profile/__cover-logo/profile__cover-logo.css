@@ -1,0 +1,7 @@
+.profile__cover-logo:hover {
+  background: rgba(0, 0, 0, 0.8);
+  background-image: url('../../../images/pen.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 50%;
+}

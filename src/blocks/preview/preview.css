@@ -1,0 +1,14 @@
+@keyframes showPopup {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.preview {
+  padding: 34px 36px 37px 36px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  max-height: 75vh;
+  max-width: 75vw;
+  animation: showPopup 300ms ease-in-out both;
+}

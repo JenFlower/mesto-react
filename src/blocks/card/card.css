@@ -1,0 +1,9 @@
+.card {
+  background-color: #ffffff;
+
+  /* при max-width, если картинка битая - карточка становится узкая */
+  width: 100%;
+  border-radius: 10px;
+  position: relative;
+  /* justify-self: center; */
+}

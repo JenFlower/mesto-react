@@ -1,0 +1,22 @@
+@keyframes showPopup {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.popup__form {
+  display: flex;
+  flex-direction: column;
+  width: calc(430px - (36px * 2));
+  background-color: white;
+  padding: 34px 36px 37px 36px;
+  border-radius: 10px;
+  position: relative;
+  animation: showPopup 300ms ease-in-out both;
+}
+
+@media screen and (min-width: 320px) and (max-width: 500px) {
+  .popup__form {
+    max-width: calc(282px - (22px * 2));
+    padding: 25px 22px 25px 22px;
+  }
+}

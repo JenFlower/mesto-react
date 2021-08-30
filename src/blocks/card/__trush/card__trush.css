@@ -1,0 +1,14 @@
+.card__trush {
+  position:absolute;
+  background-image: url(../../../images/trash.svg);
+  background-color: transparent;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  right: 15px;
+  top: 18px;
+  border: none;
+  outline: none;
+  z-index: 2;
+  width: 18px;
+  height: 19px;
+}
