@@ -25,7 +25,7 @@ function App() {
     .catch(error => console.log(error))
   }, [])
 
-  console.log('currentUser', currentUser)
+  // console.log('currentUser', currentUser)
 
   const handleEditAvatarClick = () => {
     setIsEditAvatarPopupOpen(true)
@@ -50,7 +50,18 @@ function App() {
     setSelectedCard(null)
   }
 
-  console.log(selectedCard)
+  const handleUpdateUser = (data) => {
+    api.patchUserData(data)
+      .then(res => {
+        setCurrentUser(res)
+        console.log('currUser', currentUser)
+      })
+      .then(() => {
+        closeAllPopups()
+      })
+    .catch(error => console.log(error))
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -64,13 +75,8 @@ function App() {
           onEditAvatar={handleEditAvatarClick}
           />
         <Footer />
-        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
-        {/* <PopupWithForm name="profile" title="Редактировать профиль" isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} buttonText="Сохранить">
-            <input className="popup__input popup__input_field_name" id="popup-name" type="text" name="inputName" placeholder="Имя" minLength="2" maxLength="40" autoComplete="off" required />
-            <span className="popup__input-error" id="popup-name-error"></span>
-            <input className="popup__input popup__input_field_job popup__input_last-child" id="popup-job" type="text" name="inputJob" placeholder="О себе" minLength="2" maxLength="200" autoComplete="off" required />
-            <span className="popup__input-error" id="popup-job-error"></span>
-        </PopupWithForm> */}
+        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser}/>
+       
 
         <PopupWithForm name="card" title="Новое место" isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} buttonText="Сохранить">
             <input className="popup__input popup__input_field_card-name" id="popup-card-name" type="text" name="inputCardName" placeholder="Название"  minLength="2" maxLength="30" autoComplete="off" required />

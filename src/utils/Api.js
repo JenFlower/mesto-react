@@ -30,7 +30,7 @@ class Api  {
   }
 
 
-  patchUserData({inputName, inputJob}) {
+  patchUserData({name, about}) {
     return fetch(`${this._address}/v1/${this._groupId}/users/me`, {
       method: 'PATCH',
       headers: {
@@ -38,8 +38,8 @@ class Api  {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        name: inputName,
-        about: inputJob
+        name,
+        about
       })
     })
     .then(this._checkResponse)

@@ -10,7 +10,7 @@ export default function Main(props) {
 
   useEffect(() => {
     api.getCards().then(res => {
-      console.log(res)
+      // console.log(res)
       setCards(res)
     })
     .catch(error => console.log(error))
