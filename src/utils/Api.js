@@ -45,7 +45,7 @@ class Api  {
     .then(this._checkResponse)
   }
 
-  updateAvatar(inputData) {
+  updateAvatar(avatar) {
     return fetch(`${this._address}/v1/${this._groupId}/users/me/avatar`, {
       method: 'PATCH',
       headers: {
@@ -53,7 +53,7 @@ class Api  {
         'content-type': 'application/json'
       },
       body: JSON.stringify({
-        avatar: inputData
+        avatar
       })
     })
     .then(this._checkResponse)

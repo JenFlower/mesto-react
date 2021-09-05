@@ -9,6 +9,7 @@ import Footer from './Footer'
 import PopupWithForm from './PopupWithForm'
 import ImagePopup from './ImagePopup'
 import EditProfilePopup from './EditProfilePopup'
+import EditAvatarPopup from './EditAvatarPopup'
 
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
     .catch(error => console.log(error))
   }, [])
 
-  // console.log('currentUser', currentUser)
+  console.log('currentUser', currentUser)
 
   const handleEditAvatarClick = () => {
     setIsEditAvatarPopupOpen(true)
@@ -54,7 +55,17 @@ function App() {
     api.patchUserData(data)
       .then(res => {
         setCurrentUser(res)
-        console.log('currUser', currentUser)
+      })
+      .then(() => {
+        closeAllPopups()
+      })
+    .catch(error => console.log(error))
+  }
+
+  const handleUpdateAvatar = (data) => {
+    api.updateAvatar(data)
+      .then(res => {
+        setCurrentUser(res)
       })
       .then(() => {
         closeAllPopups()
@@ -87,11 +98,7 @@ function App() {
         
         <PopupWithForm name="delete" title="Вы уверены?" buttonText="Да"/>
 
-        <PopupWithForm name="logo" title="Обновить аватар" isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} buttonText="Сохранить">
-            <input className="popup__input popup__input_field_logo-link" id="popup-logo-link" type="url" name="inputAvatar" placeholder="Ссылка на картинку" autoComplete="off" required />
-            <span className="popup__input-error" id="popup-logo-link-error"></span>
-        </PopupWithForm>
-
+        <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar}/>
         <ImagePopup name="preview" card={selectedCard} onClose={closeAllPopups}/>
         
 
