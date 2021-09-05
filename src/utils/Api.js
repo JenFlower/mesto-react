@@ -82,6 +82,10 @@ class Api  {
     .then(this._checkResponse)
   }
 
+  changeLikeCardStatus(cardId, isLiked) {
+    return isLiked ? this.deleteLike(cardId) : this.putLike(cardId)
+  }
+
   postCard({inputCardName, inputCardLink}) {
     return fetch(`${this._address}/v1/${this._groupId}/cards`, {
       method: 'POST',
