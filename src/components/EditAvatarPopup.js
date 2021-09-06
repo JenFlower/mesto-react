@@ -1,10 +1,7 @@
 import PopupWithForm from './PopupWithForm'
-import { useState } from 'react'
 import React from 'react'
-import { CurrentUserContext } from '../contexts/CurrentUserContext'
 
 export default function EditProfilePopup(props) {
-    const currentUser = React.useContext(CurrentUserContext);
     const avatarRef = React.useRef('')
 
     function handleSubmit(e) {
