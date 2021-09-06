@@ -8,7 +8,7 @@ export default function Main(props) {
   const currentUser = React.useContext(CurrentUserContext)
 
   return (
-    <main>
+    <main cards={props.cards}>
       <section className="profile">
         <div className="profile__content">
           <div className="profile__cover-logo">
@@ -28,6 +28,7 @@ export default function Main(props) {
         <ul className="elements__list">
           {props.cards.map(card => 
             (
+              
               <Card key={card._id} card={card} onClick={props.onOpenPreview} onCardLike={props.onCardLike} onCardDelete={props.onCardDelete}/>
             )
           )}

@@ -10,6 +10,7 @@ import PopupWithForm from './PopupWithForm'
 import ImagePopup from './ImagePopup'
 import EditProfilePopup from './EditProfilePopup'
 import EditAvatarPopup from './EditAvatarPopup'
+import AddPlacePopup from './AddPlacePopup';
 
 
 function App() {
@@ -99,6 +100,17 @@ function App() {
     .catch(error => console.log(error))
   }
 
+  const handleAddPlace = (data) => {
+    api.postCard(data)
+      .then(newCard => {
+        setCards([newCard, ...cards]); 
+      })
+      .then(() => {
+        closeAllPopups()
+      })
+      .catch(error => console.log(error))
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -116,15 +128,7 @@ function App() {
         <Footer />
         <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser}/>
        
-
-        <PopupWithForm name="card" title="Новое место" isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} buttonText="Сохранить">
-            <input className="popup__input popup__input_field_card-name" id="popup-card-name" type="text" name="inputCardName" placeholder="Название"  minLength="2" maxLength="30" autoComplete="off" required />
-            <span className="popup__input-error" id="popup-card-name-error"></span>
-            <input className="popup__input popup__input_field_card-link popup__input_last-child" id="popup-card-link" type="url" name="inputCardLink" placeholder="Ссылка на картинку" autoComplete="off" required />
-            <span className="popup__input-error" id="popup-card-link-error"></span>
-        </PopupWithForm>
-        
-        <PopupWithForm name="delete" title="Вы уверены?" buttonText="Да"/>
+        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlace} buttonText="Сохранить"/>
 
         <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar}/>
         <ImagePopup name="preview" card={selectedCard} onClose={closeAllPopups}/>

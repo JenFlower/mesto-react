@@ -86,7 +86,7 @@ class Api  {
     return isLiked ? this.deleteLike(cardId) : this.putLike(cardId)
   }
 
-  postCard({inputCardName, inputCardLink}) {
+  postCard({name, link}) {
     return fetch(`${this._address}/v1/${this._groupId}/cards`, {
       method: 'POST',
       headers: {
@@ -94,8 +94,8 @@ class Api  {
         'content-type': 'application/json'
       },
       body: JSON.stringify({
-        name: inputCardName,
-        link: inputCardLink
+        name,
+        link
       })
     })
     .then(this._checkResponse)
