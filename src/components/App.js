@@ -22,18 +22,12 @@ function App() {
   const [cards, setCards] = useState([])
   
   useEffect(() => {
-    api.getCards().then(res => {
-      // console.log(res)
-      setCards(res)
+    Promise.all([api.getUserData(), api.getCards()])
+    .then(([ userData, cards ]) => { 
+      setCards(cards)
+      setCurrentUser(userData)
     })
-    .catch(error => console.log(error))
-  }, [])
-
-  useEffect(() => {
-    api.getUserData().then(res => {
-      setCurrentUser(res)
-    })
-    .catch(error => console.log(error))
+    .catch(error => console.log(error));
   }, [])
 
   function handleCardLike(card) {
@@ -82,8 +76,6 @@ function App() {
     api.patchUserData(data)
       .then(res => {
         setCurrentUser(res)
-      })
-      .then(() => {
         closeAllPopups()
       })
     .catch(error => console.log(error))
@@ -93,8 +85,6 @@ function App() {
     api.updateAvatar(data)
       .then(res => {
         setCurrentUser(res)
-      })
-      .then(() => {
         closeAllPopups()
       })
     .catch(error => console.log(error))
@@ -104,8 +94,6 @@ function App() {
     api.postCard(data)
       .then(newCard => {
         setCards([newCard, ...cards]); 
-      })
-      .then(() => {
         closeAllPopups()
       })
       .catch(error => console.log(error))
