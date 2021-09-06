@@ -13,7 +13,7 @@ export default function EditProfilePopup(props) {
             setName(currentUser.name);
             setDescription(currentUser.about);
         }
-      }, [props.isOpen]); 
+      }, [props.isOpen, currentUser]); 
 
     const handleChangeName = (evt) => {
         setName(evt.target.value)
